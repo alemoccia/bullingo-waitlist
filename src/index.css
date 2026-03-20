@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 214 40% 10%;
+    --foreground: 213 27% 84%;
+    --card: 214 35% 14%;
+    --card-foreground: 213 27% 84%;
+    --popover: 214 35% 14%;
+    --popover-foreground: 213 27% 84%;
+    --primary: 152 52% 25%;
+    --primary-foreground: 213 27% 84%;
+    --primary-light: 152 52% 33%;
+    --primary-bright: 152 55% 37%;
+    --primary-glow: 152 52% 25% / 0.18;
+    --primary-edge: 152 52% 25% / 0.32;
+    --secondary: 214 35% 14%;
+    --secondary-foreground: 213 27% 84%;
+    --surface: 213 30% 17%;
+    --muted: 214 35% 14%;
+    --muted-foreground: 215 17% 47%;
+    --accent: 152 55% 37%;
+    --accent-foreground: 213 27% 84%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --gold: 42 85% 42%;
+    --gold-light: 42 78% 50%;
+    --border: 0 0% 100% / 0.07;
+    --input: 0 0% 100% / 0.07;
+    --ring: 152 52% 25%;
+    --radius: 0.625rem;
+    --sidebar-background: 214 40% 10%;
+    --sidebar-foreground: 213 27% 84%;
+    --sidebar-primary: 152 52% 25%;
+    --sidebar-primary-foreground: 213 27% 84%;
+    --sidebar-accent: 214 35% 14%;
+    --sidebar-accent-foreground: 213 27% 84%;
+    --sidebar-border: 0 0% 100% / 0.07;
+    --sidebar-ring: 152 52% 25%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.35;
+}
+
+/* Grid overlay */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  z-index: 0;
+  background-image:
+    linear-gradient(hsl(152 55% 37% / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(152 55% 37% / 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Radial glow */
+.radial-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 70% at 15% 50%, hsl(152 52% 25% / 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 85% 80%, hsl(42 85% 42% / 0.07) 0%, transparent 60%);
+}
+
+/* Pulse animation */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2);   opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-10px) rotate(-3deg); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shim {
+  to { background-position: 200% center; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease 0.15s both;
+}
+
+.animate-fade-down {
+  animation: fadeDown 0.5s ease both;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shim 3.5s linear infinite;
+}
+
+.font-display {
+  font-family: 'Fraunces', serif;
+}
+
+.font-mono-dm {
+  font-family: 'DM Mono', monospace;
+}

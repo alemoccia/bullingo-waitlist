@@ -1,0 +1,7 @@
+project_id = "avgoyanxbfqzzqhhgzvl"
+
+[functions.admin-data]
+verify_jwt = false
+
+[functions.waitlist-signup]
+verify_jwt = false
